@@ -33,5 +33,3 @@ class CustomAppBarTheme {
     ),
   );
 }
-
-class AppColors {}

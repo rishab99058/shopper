@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopper/utils/theme/appTheme.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -7,8 +8,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(useMaterial3: true, fontFamily: 'Urbanist'),
-      home: Scaffold(body: Center(child: Text('Shopper'))),
+      themeMode: ThemeMode.system,
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      home: const Scaffold(body: Center(child: Text('Shopper'))),
     );
   }
 }
