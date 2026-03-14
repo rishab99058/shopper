@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopper/utils/theme/appTheme.dart';
+import 'package:shopper/screens/onboarding/screen/onBoarding.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
-      home: const Scaffold(body: Center(child: Text('Shopper'))),
+      home: OnBoardingScreen(),
     );
   }
 }
