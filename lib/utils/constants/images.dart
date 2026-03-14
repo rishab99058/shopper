@@ -6,4 +6,7 @@ class AppImages {
   static const String onBoardingImage2 = "assets/images/animations/cart.json";
   static const String onBoardingImage3 =
       "assets/images/animations/delivery.json";
+
+  static const String googleIcon = "assets/logos/google-icon.png";
+  static const String facebookIcon = "assets/logos/facebook-icon.png";
 }

@@ -50,4 +50,8 @@ class AppDeviceHelpers {
     final viewInsets = MediaQuery.of(context).viewInsets;
     return viewInsets.bottom;
   }
+
+  static bool isDarkMode(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.dark;
+  }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:shopper/utils/theme/appTheme.dart';
 import 'package:shopper/screens/onboarding/screen/onBoarding.dart';
 
@@ -7,12 +8,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.system,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
-      home: OnBoardingScreen(),
+      home: const OnBoardingScreen(),
     );
   }
 }
