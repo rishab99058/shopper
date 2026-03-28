@@ -6,8 +6,6 @@ import 'package:shopper/screens/login/model/loginForm.dart';
 import 'package:shopper/screens/login/controller/loginController.dart';
 import 'package:get/get.dart';
 
-
-
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
@@ -43,4 +41,3 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
-

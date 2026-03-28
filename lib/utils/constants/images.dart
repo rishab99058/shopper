@@ -9,4 +9,6 @@ class AppImages {
 
   static const String googleIcon = "assets/logos/google-icon.png";
   static const String facebookIcon = "assets/logos/facebook-icon.png";
+  static const String resetPasswordImage =
+      "assets/images/animations/sammy-line-man-receives-a-mail.png";
 }

@@ -72,4 +72,13 @@ class AppTexts {
 
   static const String termsOfUseContent =
       "Welcome to Shopper. By accessing or using our application, you agree to comply with and be bound by these Terms of Use. All content provided on this platform is the property of Shopper and protected by intellectual property laws. You agree not to use the application for any unlawful purposes or in any way that could harm our services. We reserve the right to terminate accounts that violate our community guidelines. Prices and availability of products are subject to change without notice. Your use of this app is at your own risk.";
+
+  static const String forgotPasswordSubTitle =
+      "Enter your registered email address. We will send you a link to reset your password.";
+
+  static const String submit = "Submit";
+
+  static const String resend = "Resend Email";
+
+  static const String backToLogin = "Back to Login";
 }
