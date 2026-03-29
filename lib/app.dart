@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shopper/utils/constants/colors.dart';
 import 'package:shopper/utils/theme/appTheme.dart';
 import 'package:shopper/screens/onboarding/screen/onBoarding.dart';
 
@@ -13,7 +14,10 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
-      home: const OnBoardingScreen(),
+      home: Scaffold(
+        backgroundColor: AppColors.primary,
+        body: Center(child: CircularProgressIndicator(color: Colors.white)),
+      ),
     );
   }
 }
