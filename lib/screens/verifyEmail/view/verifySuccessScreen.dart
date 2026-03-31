@@ -3,6 +3,8 @@ import 'package:shopper/utils/constants/images.dart';
 import 'package:shopper/utils/constants/sizes.dart';
 import 'package:shopper/utils/constants/text.dart';
 import 'package:shopper/utils/helpers/deviceHelpers.dart';
+import 'package:get/get.dart';
+import 'package:shopper/navigationMenu.dart';
 
 class VerifySuccessScreen extends StatelessWidget {
   const VerifySuccessScreen({super.key});
@@ -41,7 +43,7 @@ class VerifySuccessScreen extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () => Get.to(() => const NavigationMenu()),
                   child: const Text('Continue'),
                 ),
               ),

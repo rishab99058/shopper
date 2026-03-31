@@ -3,6 +3,7 @@ import 'package:shopper/common/widgets/divider/appDivider.dart';
 import 'package:shopper/common/widgets/button/circularButton.dart';
 import 'package:shopper/common/widgets/button/elevatedButton.dart';
 import 'package:shopper/common/widgets/button/outlinedButton.dart';
+import 'package:shopper/navigationMenu.dart';
 import 'package:shopper/screens/forgotPassword/screen/forgotPassword.dart';
 import 'package:shopper/screens/signup/screen/signup.dart';
 import 'package:shopper/utils/constants/sizes.dart';
@@ -83,7 +84,10 @@ class LoginForm extends StatelessWidget {
               ],
             ),
           ),
-          AppElevatedButton(onPressed: () {}, child: Text(AppTexts.login)),
+          AppElevatedButton(
+            onPressed: () => Get.to(() => const NavigationMenu()),
+            child: Text(AppTexts.login),
+          ),
 
           const SizedBox(height: AppSizes.spaceBtwSections),
           AppOutlinedButton(
