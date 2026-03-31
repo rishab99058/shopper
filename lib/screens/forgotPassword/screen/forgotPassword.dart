@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
-import 'package:shopper/common/widgets/button/elevatedButton.dart';
 import 'package:shopper/screens/forgotPassword/model/forgotPasswordForm.dart';
-import 'package:shopper/screens/login/screen/login.dart';
 import 'package:shopper/utils/constants/sizes.dart';
 import 'package:shopper/utils/constants/text.dart';
 

@@ -11,4 +11,13 @@ class AppImages {
   static const String facebookIcon = "assets/logos/facebook-icon.png";
   static const String resetPasswordImage =
       "assets/images/animations/sammy-line-man-receives-a-mail.png";
+
+  static const String loadingAnimation =
+      "assets/images/animations/default-loader-animation.json";
+
+  static const String verifyEmail =
+      "assets/images/content/mail_illustration.png";
+
+  static const String successIllustration =
+      "assets/images/content/account_created.png";
 }

@@ -81,4 +81,8 @@ class AppTexts {
   static const String resend = "Resend Email";
 
   static const String backToLogin = "Back to Login";
+
+  static const String roleUser = "User";
+  static const String roleAdmin = "Admin";
+  static const String roleSuperAdmin = "Super Admin";
 }

@@ -11,6 +11,7 @@ import 'package:shopper/utils/helpers/deviceHelpers.dart';
 import 'package:shopper/common/widgets/divider/appDivider.dart';
 import 'package:shopper/common/widgets/button/circularButton.dart';
 import 'package:shopper/utils/constants/images.dart';
+import 'package:shopper/utils/validation/validator.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
@@ -38,12 +39,20 @@ class SignUpScreen extends StatelessWidget {
               ),
               const SizedBox(height: AppSizes.spaceBtwSections),
               Form(
+                key: controller.signUpFormKey,
                 child: Column(
                   children: [
                     Row(
                       children: [
                         Expanded(
                           child: TextFormField(
+                            controller: controller.firstName,
+                            validator: (value) {
+                              return Validator.validateEmptyText(
+                                value,
+                                'First Name',
+                              );
+                            },
                             decoration: const InputDecoration(
                               labelText: AppTexts.firstName,
                               prefixIcon: Icon(Iconsax.user),
@@ -53,6 +62,13 @@ class SignUpScreen extends StatelessWidget {
                         const SizedBox(width: AppSizes.spaceBtwItems),
                         Expanded(
                           child: TextFormField(
+                            controller: controller.lastName,
+                            validator: (value) {
+                              return Validator.validateEmptyText(
+                                value,
+                                'Last Name',
+                              );
+                            },
                             decoration: const InputDecoration(
                               labelText: AppTexts.lastName,
                               prefixIcon: Icon(Iconsax.user),
@@ -63,14 +79,33 @@ class SignUpScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: AppSizes.spaceBtwItems),
                     TextFormField(
+                      controller: controller.email,
+                      validator: (value) {
+                        return Validator.validateEmail(value);
+                      },
                       decoration: const InputDecoration(
                         labelText: AppTexts.email,
                         prefixIcon: Icon(Iconsax.direct_right),
                       ),
                     ),
                     const SizedBox(height: AppSizes.spaceBtwItems),
+                    TextFormField(
+                      controller: controller.phoneNumber,
+                      validator: (value) {
+                        return Validator.validatePhoneNumber(value);
+                      },
+                      decoration: const InputDecoration(
+                        labelText: AppTexts.phoneNumber,
+                        prefixIcon: Icon(Iconsax.call),
+                      ),
+                    ),
+                    const SizedBox(height: AppSizes.spaceBtwItems),
                     Obx(
                       () => TextFormField(
+                        controller: controller.password,
+                        validator: (value) {
+                          return Validator.validatePassword(value);
+                        },
                         obscureText: controller.hidePassword.value,
                         decoration: InputDecoration(
                           labelText: AppTexts.password,
@@ -84,16 +119,6 @@ class SignUpScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                      ),
-                    ),
-
-                    const SizedBox(height: AppSizes.spaceBtwItems),
-                    TextFormField(
-                      obscureText: true,
-                      decoration: const InputDecoration(
-                        labelText: AppTexts.confirmPassword,
-                        prefixIcon: Icon(Iconsax.password_check),
-                        suffixIcon: Icon(Iconsax.eye_slash),
                       ),
                     ),
                     const SizedBox(height: AppSizes.spaceBtwSections),
@@ -165,7 +190,7 @@ class SignUpScreen extends StatelessWidget {
                     SizedBox(
                       width: double.infinity,
                       child: AppElevatedButton(
-                        onPressed: () {},
+                        onPressed: () => controller.registerUser(),
                         child: const Text(AppTexts.createAccount),
                       ),
                     ),
