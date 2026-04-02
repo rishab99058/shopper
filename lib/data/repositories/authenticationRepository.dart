@@ -73,4 +73,36 @@ class AuthenticationRepository extends GetxController {
       throw 'Something went wrong. Please try again.';
     }
   }
+
+  /* ------------------------------- Email and Password Sign In ------------------------------- */
+  Future<UserCredential> emailAndPasswordSignIn(
+    String email,
+    String password,
+  ) async {
+    try {
+      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      return userCredential;
+    } on FirebaseAuthException catch (e) {
+      print('FirebaseAuthException Code: ${e.code}');
+      print('FirebaseAuthException Message: ${e.message}');
+      throw AppFirebaseAuthException(code: e.code).message;
+    } on FirebaseException catch (e) {
+      print('FirebaseException Code: ${e.code}');
+      print('FirebaseException Message: ${e.message}');
+      throw AppFirebaseException(code: e.code).message;
+    } on FormatException catch (e) {
+      print('FormatException: ${e.message}');
+      throw const AppFormatException().message;
+    } on PlatformException catch (e) {
+      print('PlatformException Code: ${e.code}');
+      print('PlatformException Message: ${e.message}');
+      throw AppPlatformException(code: e.code).message;
+    } catch (e) {
+      print('Unexpected Error: $e');
+      throw 'Something went wrong. Please try again.';
+    }
+  }
 }

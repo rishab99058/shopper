@@ -12,6 +12,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:shopper/utils/constants/images.dart';
 import 'package:get/get.dart';
 import 'package:shopper/screens/login/controller/loginController.dart';
+import 'package:shopper/utils/validation/validator.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({super.key, required this.controller, required this.dark});
@@ -21,11 +22,15 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = LoginController.instance;
     return Form(
+      key: controller.loginFormKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           TextFormField(
+            controller: controller.email,
+            validator: (value) => Validator.validateEmail(value),
             decoration: InputDecoration(
               prefixIcon: Icon(Iconsax.direct_right),
               labelText: AppTexts.email,
@@ -34,6 +39,8 @@ class LoginForm extends StatelessWidget {
           const SizedBox(height: AppSizes.spaceBtwInputFields),
           Obx(
             () => TextFormField(
+              controller: controller.password,
+              validator: (value) => Validator.validatePassword(value),
               obscureText: controller.hidePassword.value, // Bind to observable
               decoration: InputDecoration(
                 prefixIcon: const Icon(Iconsax.password_check),
@@ -85,7 +92,7 @@ class LoginForm extends StatelessWidget {
             ),
           ),
           AppElevatedButton(
-            onPressed: () => Get.to(() => const NavigationMenu()),
+            onPressed: () => controller.emailAndPasswordSignIn(),
             child: Text(AppTexts.login),
           ),
 
