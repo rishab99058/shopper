@@ -70,7 +70,7 @@ class LoginController extends GetxController {
       );
 
       // Redirect to home screen
-      Get.offAll(() => const NavigationMenu());
+      authenticationRepository.screenRedirect();
     } catch (e) {
       AppFullscreenloader.stopLoading();
       AppSnackBar.errorSnackBar(message: e.toString(), title: 'Error');
