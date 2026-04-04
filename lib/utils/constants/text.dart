@@ -85,4 +85,7 @@ class AppTexts {
   static const String roleUser = "User";
   static const String roleAdmin = "Admin";
   static const String roleSuperAdmin = "Super Admin";
+
+  static const String searchInStore = "Search in Store";
+  static const String popularCategories = "Popular Categories";
 }

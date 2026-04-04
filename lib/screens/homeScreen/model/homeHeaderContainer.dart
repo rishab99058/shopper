@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopper/common/widgets/appBar/appBar.dart';
 import 'package:shopper/common/widgets/circularContainer/circularContainer.dart';
 import 'package:shopper/common/widgets/custom_shapes/curved_edges/curvedEdgesWidget.dart';
 import 'package:shopper/utils/constants/colors.dart';
@@ -16,7 +17,7 @@ class HomeHeaderContainer extends StatelessWidget {
         color: AppColors.primary,
         padding: const EdgeInsets.all(0),
         child: SizedBox(
-          height: AppDeviceHelpers.getScreenHeight(context) * 0.4,
+          height: 320,
           child: Stack(
             children: [
               /// -- Background Custom Shapes
@@ -35,6 +36,7 @@ class HomeHeaderContainer extends StatelessWidget {
                 top: -150,
                 right: 200,
               ),
+
               child,
             ],
           ),

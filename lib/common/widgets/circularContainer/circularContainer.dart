@@ -10,12 +10,12 @@ class AppCircularContainer extends StatelessWidget {
     this.padding,
     this.backgroundColor,
     this.child,
-    required this.top,
-    required this.right,
+    this.top,
+    this.right,
   });
 
-  final double top;
-  final double right;
+  final double? top;
+  final double? right;
   final double? width;
   final double? height;
   final EdgeInsetsGeometry? padding;
@@ -24,18 +24,25 @@ class AppCircularContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      top: top,
-      right: right,
-      child: Container(
-        width: width ?? AppDeviceHelpers.getScreenHeight(context) * 0.4,
-        height: height ?? AppDeviceHelpers.getScreenHeight(context) * 0.4,
-        padding: padding,
-        decoration: BoxDecoration(
-          color: backgroundColor ?? AppColors.borderSecondary.withAlpha(30),
-          shape: BoxShape.circle,
-        ),
+    Widget container = Container(
+      width: width ?? AppDeviceHelpers.getScreenHeight(context) * 0.4,
+      height: height ?? AppDeviceHelpers.getScreenHeight(context) * 0.4,
+      padding: padding,
+      decoration: BoxDecoration(
+        color: backgroundColor ?? AppColors.borderSecondary.withAlpha(30),
+        shape: BoxShape.circle,
       ),
+      child: child,
     );
+
+    if (top != null || right != null) {
+      return Positioned(
+        top: top,
+        right: right,
+        child: container,
+      );
+    }
+
+    return container;
   }
 }

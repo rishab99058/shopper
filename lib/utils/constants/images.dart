@@ -20,4 +20,25 @@ class AppImages {
 
   static const String successIllustration =
       "assets/images/content/account_created.png";
+
+  static const String bagIcon = "assets/icons/logos/bag.png";
+  static const String bedIcon = "assets/icons/logos/bed.png";
+  static const String clothesIcon = "assets/icons/logos/clothes.png";
+  static const String cosmeticsIcon = "assets/icons/logos/cosmetics.png";
+  static const String electronicsIcon = "assets/icons/logos/electronics.png";
+  static const String formalShoesIcon = "assets/icons/logos/formal_shoes.png";
+  static const String furnitureIcon = "assets/icons/logos/furniture.png";
+  static const String gadgetsIcon = "assets/icons/logos/gadgets.png";
+  static const String jacketsIcon = "assets/icons/logos/jackets.png";
+  static const String lampIcon = "assets/icons/logos/lamp.png";
+  static const String laptopsIcon = "assets/icons/logos/laptops.png";
+  static const String mobileIcon = "assets/icons/logos/mobile.png";
+  static const String perfumeIcon = "assets/icons/logos/perfume.png";
+  static const String shirtIcon = "assets/icons/logos/shirt.png";
+  static const String shoesIcon = "assets/icons/logos/shoes.png";
+  static const String shortsIcon = "assets/icons/logos/shorts.png";
+  static const String soccerIcon = "assets/icons/logos/soccer.png";
+  static const String sportsIcon = "assets/icons/logos/sports.png";
+  static const String sportsShoesIcon = "assets/icons/logos/sports_shoes.png";
+  static const String watchIcon = "assets/icons/logos/watch.png";
 }

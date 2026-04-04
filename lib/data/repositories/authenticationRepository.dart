@@ -115,4 +115,18 @@ class AuthenticationRepository extends GetxController {
       throw 'Something went wrong. Please try again.';
     }
   }
+
+  /* ------------------------------- Logout ------------------------------- */
+  Future<void> logout() async {
+    try {
+      await _auth.signOut();
+      Get.offAll(() => const LoginScreen());
+    } on FirebaseAuthException catch (e) {
+      throw AppFirebaseAuthException(code: e.code).message;
+    } on FirebaseException catch (e) {
+      throw AppFirebaseException(code: e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again.';
+    }
+  }
 }
