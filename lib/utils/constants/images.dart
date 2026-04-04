@@ -41,4 +41,15 @@ class AppImages {
   static const String sportsIcon = "assets/icons/logos/sports.png";
   static const String sportsShoesIcon = "assets/icons/logos/sports_shoes.png";
   static const String watchIcon = "assets/icons/logos/watch.png";
+
+  static const String banner1 =
+      "https://res.cloudinary.com/dws1oujlk/image/upload/v1775327300/Red_And_Orange_Modern_Fashion_Sale_Facebook_Post_pb7td7.png";
+  static const String banner2 =
+      "https://res.cloudinary.com/dws1oujlk/image/upload/v1775327532/Untitled_design_lprbrp.png";
+
+  static const String banner3 =
+      "https://res.cloudinary.com/dws1oujlk/image/upload/v1775327278/Gray_Modern_Fashion_Sale_Poster_Landscape_qymgvt.png";
+
+  static const String banner4 =
+      "https://res.cloudinary.com/dws1oujlk/image/upload/v1775327269/Brown_Modern_Fashion_Sale_Poster_Landscape_yufyac.png";
 }

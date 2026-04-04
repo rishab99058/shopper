@@ -1,12 +1,8 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:shopper/common/widgets/searchBar/searchBar.dart';
-import 'package:shopper/common/widgets/verticalImageText/verticalImageText.dart';
-import 'package:shopper/screens/homeScreen/model/customTab.dart';
-import 'package:shopper/screens/homeScreen/model/homeHeaderContainer.dart';
-import 'package:shopper/utils/constants/colors.dart';
+import 'package:shopper/screens/homeScreen/model/upperPart.dart';
 import 'package:shopper/utils/constants/images.dart';
 import 'package:shopper/utils/constants/sizes.dart';
-import 'package:shopper/utils/constants/text.dart';
 import 'package:shopper/utils/helpers/deviceHelpers.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -17,61 +13,31 @@ class HomeScreen extends StatelessWidget {
     bool dark = AppDeviceHelpers.isDarkMode(context);
     return Scaffold(
       body: SingleChildScrollView(
-        child: Stack(
+        child: Column(
           children: [
-            SizedBox(height: 350),
-
-            HomeHeaderContainer(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  /// -- App bar
-                  CustomAppBar(),
-                  const SizedBox(height: AppSizes.spaceBtwSections),
-
-                  /// -- Heading
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: AppSizes.spaceBtwSections,
-                    ),
-                    child: Text(
-                      AppTexts.popularCategories,
-                      style: Theme.of(
-                        context,
-                      ).textTheme.headlineMedium!.apply(color: AppColors.white),
-                    ),
-                  ),
-
-                  const SizedBox(height: AppSizes.spaceBtwItems),
-
-                  Padding(
-                    padding: const EdgeInsets.only(left: AppSizes.defaultSpace),
-                    child: SizedBox(
-                      height: 80,
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: 6,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) {
-                          return VerticalCategory(
-                            title: 'Shoes',
-                            image: AppImages.shoesIcon,
-                            textColor: AppColors.white,
-                            onTap: () {},
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                ],
+            UpperPart(dark: dark),
+            SizedBox(height: AppSizes.spaceBtwItems),
+            CarouselSlider(
+              items: [
+                Image.network(AppImages.banner1),
+                Image.network(AppImages.banner2),
+                Image.network(AppImages.banner3),
+                Image.network(AppImages.banner4),
+              ],
+              options: CarouselOptions(
+                autoPlay: true,
+                aspectRatio: 16 / 9,
+                viewportFraction: 0.8,
+                initialPage: 0,
+                enableInfiniteScroll: true,
+                reverse: false,
+                autoPlayInterval: Duration(seconds: 3),
+                autoPlayAnimationDuration: Duration(milliseconds: 800),
+                autoPlayCurve: Curves.easeInOut,
+                enlargeCenterPage: true,
+                onPageChanged: (index, reason) {},
+                scrollDirection: Axis.horizontal,
               ),
-            ),
-
-            Positioned(
-              bottom: 0,
-              left: 20,
-              right: 20,
-              child: AppSearchBar(dark: dark),
             ),
           ],
         ),
