@@ -31,7 +31,7 @@ class HomeScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(AppSizes.defaultSpace),
               child: AppGridLayout(
-                itemCount: 4,
+                itemCount: 8,
                 itemBuilder: (_, index) {
                   return SquareCard(
                     imageUrl: AppImages.productImage1,
