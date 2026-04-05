@@ -5,6 +5,7 @@ class AppColors {
 
   // Primary Color
   static const Color primary = Color(0xFF0857A0);
+  // static const Color primary = Color.fromARGB(255, 210, 101, 6);
 
   // Text colors
   static const Color textPrimary = Color(0xFF333333);

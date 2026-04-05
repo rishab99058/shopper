@@ -13,7 +13,7 @@ class AppImages {
       "assets/images/animations/sammy-line-man-receives-a-mail.png";
 
   static const String loadingAnimation =
-      "assets/images/animations/default-loader-animation.json";
+      "assets/images/animations/loading.json";
 
   static const String verifyEmail =
       "assets/images/content/mail_illustration.png";
@@ -52,4 +52,11 @@ class AppImages {
 
   static const String banner4 =
       "https://res.cloudinary.com/dws1oujlk/image/upload/v1775327269/Brown_Modern_Fashion_Sale_Poster_Landscape_yufyac.png";
+
+  static const String productImage1 =
+      "https://res.cloudinary.com/dws1oujlk/image/upload/v1775363978/shoes_dplesu.jpg";
+  static const String productImage2 =
+      "https://res.cloudinary.com/dws1oujlk/image/upload/v1775389656/product_images/nike-shirt.png";
+  static const String productImage3 =
+      "https://res.cloudinary.com/dws1oujlk/image/upload/v1775389656/product_images/jacket.png";
 }
