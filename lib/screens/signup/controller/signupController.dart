@@ -7,6 +7,7 @@ import 'package:shopper/utils/constants/text.dart';
 import 'package:shopper/utils/helpers/networkHelpers.dart';
 import 'package:shopper/utils/popups/appSnackBar.dart';
 import 'package:shopper/data/repositories/authenticationRepository.dart';
+import 'package:shopper/utils/popups/fullScreenLoader.dart';
 
 class SignUpController extends GetxController {
   static SignUpController get instance => Get.find();
@@ -31,8 +32,10 @@ class SignUpController extends GetxController {
 
   Future<void> registerUser() async {
     try {
+      AppFullscreenloader.openLoadingDialog('Creating Account...');
       bool isConnected = await Get.put(NetworkManager()).isConnected();
       if (!isConnected) {
+        AppFullscreenloader.stopLoading();
         AppSnackBar.warningSnackBar(
           message: 'Please check your internet connection',
           title: 'No Internet',
@@ -40,9 +43,11 @@ class SignUpController extends GetxController {
         return;
       }
       if (!signUpFormKey.currentState!.validate()) {
+        AppFullscreenloader.stopLoading();
         return;
       }
       if (!privacyPolicy.value) {
+        AppFullscreenloader.stopLoading();
         AppSnackBar.warningSnackBar(
           message: 'Please agree to the terms and conditions',
           title: 'Terms and Conditions',
@@ -69,6 +74,8 @@ class SignUpController extends GetxController {
       final UserRepository userRepo = Get.put(UserRepository());
       await userRepo.saveUserRecord(userModel);
 
+      AppFullscreenloader.stopLoading();
+
       AppSnackBar.successSnackBar(
         message: 'User registered successfully',
         title: 'Success',
@@ -79,6 +86,7 @@ class SignUpController extends GetxController {
       //   redirect to verify email screen
       Get.to(() => VerifyEmail(email: email.text.trim()));
     } catch (e) {
+      AppFullscreenloader.stopLoading();
       print('SignUpController Error: $e');
       AppSnackBar.errorSnackBar(message: e.toString(), title: 'Error');
     }

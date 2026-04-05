@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shopper/common/widgets/searchBar/searchBar.dart';
 import 'package:shopper/common/widgets/verticalImageText/verticalImageText.dart';
 import 'package:shopper/screens/homeScreen/model/customTab.dart';
-import 'package:shopper/screens/homeScreen/model/homeHeaderContainer.dart';
+import 'package:shopper/common/widgets/header/homeHeaderContainer.dart';
 import 'package:shopper/utils/constants/colors.dart';
 import 'package:shopper/utils/constants/images.dart';
 import 'package:shopper/utils/constants/sizes.dart';
@@ -20,11 +20,15 @@ class UpperPart extends StatelessWidget {
         SizedBox(height: 350),
 
         HomeHeaderContainer(
+          color: AppColors.tertiary,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               /// -- App bar
-              CustomAppBar(),
+              CustomAppBar(
+                title: AppTexts.homeAppbarTitle,
+                subTitle: AppTexts.homeAppbarSubTitle,
+              ),
               const SizedBox(height: AppSizes.spaceBtwSections),
 
               /// -- Heading
@@ -43,7 +47,7 @@ class UpperPart extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: AppSizes.defaultSpace),
                 child: SizedBox(
-                  height: 80,
+                  height: 90,
                   child: ListView.builder(
                     shrinkWrap: true,
                     itemCount: 6,

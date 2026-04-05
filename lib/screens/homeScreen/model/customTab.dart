@@ -4,10 +4,12 @@ import 'package:shopper/common/widgets/appBar/appBar.dart';
 import 'package:shopper/common/widgets/products/cart/cartCounterIcon.dart';
 import 'package:shopper/data/repositories/authenticationRepository.dart';
 import 'package:shopper/utils/constants/colors.dart';
-import 'package:shopper/utils/constants/text.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key});
+  const CustomAppBar({super.key, required this.title, this.subTitle});
+
+  final String title;
+  final String? subTitle;
 
   @override
   Widget build(BuildContext context) {
@@ -16,13 +18,13 @@ class CustomAppBar extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            AppTexts.homeAppbarTitle,
+            title,
             style: Theme.of(
               context,
             ).textTheme.labelMedium!.apply(color: AppColors.grey),
           ),
           Text(
-            AppTexts.homeAppbarSubTitle,
+            subTitle ?? "",
             style: Theme.of(
               context,
             ).textTheme.headlineSmall!.apply(color: AppColors.white),

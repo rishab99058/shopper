@@ -31,13 +31,14 @@ class SquareCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dark = AppDeviceHelpers.isDarkMode(context);
+    // Get the screen width to calculate relative sizes
+    final screenWidth = MediaQuery.of(context).size.width;
 
-    // !  Container with side paddings to have edges
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 180,
-        height: 290,
+        // Use a percentage of screen width or allow the parent Grid/Flex to decide width
+        width: screenWidth > 600 ? 200 : 170,
         padding: const EdgeInsets.all(1),
         decoration: BoxDecoration(
           boxShadow: [
@@ -58,62 +59,18 @@ class SquareCard extends StatelessWidget {
         ),
         child: Column(
           children: [
-            // Thumbnail, Wishlist, Discount Tag
+            // Thumbnail Section
             AppRoundedContainer(
-              height: 180,
               padding: const EdgeInsets.all(AppSizes.xs),
               backgroundColor: dark ? AppColors.dark : AppColors.light,
-              child: Column(
-                children: [
-                  // Header Row with Sale Tag and Heart Icon
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppSizes.xs,
-                      vertical: AppSizes.xs,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        // Sale Tag
-                        if (salePercentage != null)
-                          AppRoundedContainer(
-                            radius: AppSizes.sm,
-                            backgroundColor: AppColors.yellow.withAlpha(200),
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: AppSizes.md,
-                              vertical: AppSizes.xs,
-                            ),
-                            child: Text(
-                              "$salePercentage%",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .labelLarge!
-                                  .apply(color: AppColors.black),
-                            ),
-                          )
-                        else
-                          const SizedBox(),
-
-                        // Favourite Icon Button
-                        AppRoundedContainer(
-                          radius: 100,
-                          backgroundColor: dark
-                              ? AppColors.black.withAlpha(180)
-                              : AppColors.white.withAlpha(240),
-                          padding: const EdgeInsets.all(AppSizes.xs),
-                          child: const Icon(
-                            Iconsax.heart5,
-                            color: Colors.red,
-                            size: AppSizes.iconSm,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  // Thumbnail Image below the header
-                  Expanded(
-                    child: Center(
+              // Use AspectRatio so the image container scales perfectly with any width
+              child: AspectRatio(
+                aspectRatio: 1.15,
+                child: Stack(
+                  // Using Stack to keep icons on top of image
+                  children: [
+                    // Thumbnail Image
+                    Center(
                       child: AppRoundedImage(
                         imageUrl: imageUrl,
                         applyImageRadius: true,
@@ -121,43 +78,81 @@ class SquareCard extends StatelessWidget {
                         fit: BoxFit.contain,
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ),
+
+                    // Header Overlay (Sale Tag & Heart)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        if (salePercentage != null)
+                          AppRoundedContainer(
+                            radius: AppSizes.sm,
+                            backgroundColor: AppColors.yellow.withAlpha(200),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: AppSizes.sm,
+                              vertical: AppSizes.xs,
+                            ),
+                            child: Text(
+                              "$salePercentage%",
+                              style: Theme.of(context).textTheme.labelLarge!
+                                  .apply(color: AppColors.black),
+                            ),
+                          )
+                        else
+                          const SizedBox(),
+
+                        // Favorite Icon
+                        AppRoundedContainer(
+                          radius: 100,
+                          backgroundColor: dark
+                              ? AppColors.darkGunmetal.withAlpha(180)
+                              : AppColors.grey400.withAlpha(240),
+                          child: IconButton(
+                            onPressed: () {},
+                            icon: const Icon(
+                              Iconsax.heart5,
+                              color: Colors.red,
+                              size: AppSizes.iconSm,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ), // Closes AspectRatio
+            ), // Closes AppRoundedContainer
 
             const SizedBox(height: AppSizes.spaceBtwItems / 2),
 
             // Details
             Padding(
-              padding: const EdgeInsets.only(left: AppSizes.sm),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  AppProductTitleText(
-                    title: title,
-                    smallSize: true,
-                  ),
-                  const SizedBox(height: AppSizes.spaceBtwItems / 2),
-                  if (brandName != null)
-                    AppBrandTitleWithVerifiedIcon(
-                      title: brandName!,
-                    ),
-                ],
+              padding: const EdgeInsets.symmetric(horizontal: AppSizes.sm),
+              child: SizedBox(
+                width: double.infinity,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    AppProductTitleText(title: title, smallSize: true),
+                    const SizedBox(height: AppSizes.spaceBtwItems / 4),
+                    if (brandName != null)
+                      AppBrandTitleWithVerifiedIcon(title: brandName!),
+                  ],
+                ),
               ),
             ),
 
+            // Spacer ensures the price row stays at the bottom if the card expands
             const Spacer(),
 
-            // Price and Button
+            // Price and Add Button
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // Price
-                Padding(
-                  padding: const EdgeInsets.only(left: AppSizes.sm),
-                  child: AppProductPriceText(
-                    price: price,
+                Flexible(
+                  // Wrap price to prevent overflow on tiny screens
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: AppSizes.sm),
+                    child: AppProductPriceText(price: price),
                   ),
                 ),
 
@@ -171,13 +166,10 @@ class SquareCard extends StatelessWidget {
                     ),
                   ),
                   child: const SizedBox(
-                    width: AppSizes.iconLg * 1.2,
-                    height: AppSizes.iconLg * 1.2,
+                    width: AppSizes.iconLg,
+                    height: AppSizes.iconLg,
                     child: Center(
-                      child: Icon(
-                        Iconsax.add,
-                        color: AppColors.white,
-                      ),
+                      child: Icon(Iconsax.add, color: AppColors.white),
                     ),
                   ),
                 ),

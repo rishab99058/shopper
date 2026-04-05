@@ -1,23 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:shopper/common/widgets/appBar/appBar.dart';
 import 'package:shopper/common/widgets/circularContainer/circularContainer.dart';
 import 'package:shopper/common/widgets/custom_shapes/curved_edges/curvedEdgesWidget.dart';
 import 'package:shopper/utils/constants/colors.dart';
-import 'package:shopper/utils/helpers/deviceHelpers.dart';
 
 class HomeHeaderContainer extends StatelessWidget {
-  const HomeHeaderContainer({super.key, required this.child});
+  const HomeHeaderContainer({
+    super.key,
+    required this.child,
+    this.color,
+    this.size,
+  });
 
   final Widget child;
+  final Color? color;
+  final double? size;
 
   @override
   Widget build(BuildContext context) {
     return AppCurvedEdgesWidget(
       child: Container(
-        color: AppColors.primary,
+        color: color ?? AppColors.primary,
         padding: const EdgeInsets.all(0),
         child: SizedBox(
-          height: 320,
+          height: size ?? 320,
           child: Stack(
             children: [
               /// -- Background Custom Shapes

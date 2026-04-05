@@ -1,5 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:shopper/common/widgets/loaders/shimmer.dart';
 import 'package:shopper/utils/constants/sizes.dart';
+import 'package:shopper/utils/helpers/cacheHelper.dart';
 
 class AppRoundedImage extends StatelessWidget {
   const AppRoundedImage({
@@ -45,12 +48,21 @@ class AppRoundedImage extends StatelessWidget {
           borderRadius: applyImageRadius
               ? BorderRadius.circular(borderRadius)
               : BorderRadius.zero,
-          child: Image(
-            fit: fit,
-            image: isNetworkImage
-                ? NetworkImage(imageUrl)
-                : AssetImage(imageUrl) as ImageProvider,
-          ),
+          child: isNetworkImage
+              ? CachedNetworkImage(
+                  imageUrl: imageUrl,
+                  fit: fit,
+                  cacheManager: TCacheHelper.productCacheManager,
+                  placeholder: (context, url) => AppShimmerEffect(
+                    width: width ?? double.infinity,
+                    height: height ?? double.infinity,
+                  ),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                )
+              : Image(
+                  fit: fit,
+                  image: AssetImage(imageUrl),
+                ),
         ),
       ),
     );
