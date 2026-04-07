@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:shopper/app.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -12,6 +13,9 @@ Future<void> main() async {
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
 
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
+  // Resists it from portrait mode
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
   await GetStorage.init();
 

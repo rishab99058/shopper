@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:shopper/screens/homeScreen/view/home.dart';
 import 'package:shopper/screens/storeScreen/view/storeScreen.dart';
+import 'package:shopper/screens/wishlist/view/wishList.dart';
 import 'package:shopper/utils/constants/colors.dart';
 import 'package:shopper/utils/helpers/deviceHelpers.dart';
 
@@ -80,7 +81,7 @@ class NavigationController extends GetxController {
   final List<Widget> screens = [
     HomeScreen(),
     StoreScreen(),
-    Container(color: Colors.blue),
+    WishListScreen(),
     Container(color: Colors.yellow),
   ];
 }
