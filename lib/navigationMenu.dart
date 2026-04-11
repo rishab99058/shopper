@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:shopper/screens/homeScreen/view/home.dart';
+import 'package:shopper/screens/personalization/view/profile.dart';
 import 'package:shopper/screens/storeScreen/view/storeScreen.dart';
 import 'package:shopper/screens/wishlist/view/wishList.dart';
 import 'package:shopper/utils/constants/colors.dart';
@@ -82,6 +83,6 @@ class NavigationController extends GetxController {
     HomeScreen(),
     StoreScreen(),
     WishListScreen(),
-    Container(color: Colors.yellow),
+    ProfileScreen(),
   ];
 }

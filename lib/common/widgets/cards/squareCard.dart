@@ -45,7 +45,7 @@ class SquareCard extends StatelessWidget {
             BoxShadow(
               color: dark
                   ? AppColors.black.withAlpha(150)
-                  : AppColors.darkGrey.withAlpha(20),
+                  : AppColors.darkerGrey.withAlpha(150),
               blurRadius: 40,
               spreadRadius: 2,
               offset: const Offset(0, 18),
