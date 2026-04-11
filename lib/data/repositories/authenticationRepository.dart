@@ -130,4 +130,25 @@ class AuthenticationRepository extends GetxController {
       throw 'Something went wrong. Please try again.';
     }
   }
+
+  /* ------------------------------- Delete Account ------------------------------- */
+  Future<void> deleteAccount() async {
+    try {
+      final user = _auth.currentUser;
+      if (user != null) {
+        await user.delete();
+        Get.offAll(() => const LoginScreen());
+      }
+    } on FirebaseAuthException catch (e) {
+      throw AppFirebaseAuthException(code: e.code).message;
+    } on FirebaseException catch (e) {
+      throw AppFirebaseException(code: e.code).message;
+    } on FormatException catch (_) {
+      throw const AppFormatException().message;
+    } on PlatformException catch (e) {
+      throw AppPlatformException(code: e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again.';
+    }
+  }
 }

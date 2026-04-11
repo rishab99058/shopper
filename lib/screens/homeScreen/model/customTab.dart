@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:shopper/common/widgets/appBar/appBar.dart';
 import 'package:shopper/common/widgets/products/cart/cartCounterIcon.dart';
-import 'package:shopper/data/repositories/authenticationRepository.dart';
 import 'package:shopper/utils/constants/colors.dart';
 
 class CustomAppBar extends StatelessWidget {
@@ -33,15 +31,7 @@ class CustomAppBar extends StatelessWidget {
       ),
       actions: [
         CartCounterIcon(
-          onPressed: () => Get.defaultDialog(
-            title: "Logout",
-            middleText: "Are you sure you want to logout?",
-            onConfirm: () => AuthenticationRepository.instance.logout(),
-            onCancel: () => Get.back(),
-            textConfirm: "Logout",
-            textCancel: "Cancel",
-            confirmTextColor: Colors.white,
-          ),
+          onPressed: () {},
           iconColor: AppColors.white,
         ),
       ],

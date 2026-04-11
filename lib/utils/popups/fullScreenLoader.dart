@@ -11,13 +11,14 @@ class AppFullscreenloader {
       barrierDismissible: false,
       builder: (_) => PopScope(
         canPop: false,
-        child: Container(
-          color: AppDeviceHelpers.isDarkMode(Get.context!)
+        child: Scaffold(
+          backgroundColor: AppDeviceHelpers.isDarkMode(Get.context!)
               ? AppColors.dark
               : AppColors.white,
-          width: double.infinity,
-          height: double.infinity,
-          child: Column(
+          body: Container(
+            width: double.infinity,
+            height: double.infinity,
+            child: Column(
             children: [
               /// Extra Space
               const SizedBox(height: 250),
@@ -27,6 +28,7 @@ class AppFullscreenloader {
             ],
           ),
         ),
+      ),
       ),
     );
   }

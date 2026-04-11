@@ -7,6 +7,9 @@ import 'package:shopper/common/widgets/button/outlinedButton.dart';
 import 'package:shopper/common/widgets/header/homeHeaderContainer.dart';
 import 'package:shopper/common/widgets/images/circularImage.dart';
 import 'package:shopper/screens/personalization/controller/profileController.dart';
+import 'package:shopper/screens/personalization/controller/addressController.dart';
+import 'package:shopper/screens/personalization/view/userAddresses.dart';
+import 'package:shopper/screens/personalization/view/editProfile.dart';
 import 'package:shopper/utils/constants/colors.dart';
 import 'package:shopper/utils/constants/sizes.dart';
 import 'package:shopper/utils/helpers/deviceHelpers.dart';
@@ -17,13 +20,15 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(Profilecontroller());
+    final addressController = Get.put(AddressController());
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
             Stack(
               children: [
-                SizedBox(height: 230),
+                const SizedBox(height: 230),
 
                 HomeHeaderContainer(
                   size: 170, // Match the height
@@ -52,7 +57,7 @@ class ProfileScreen extends StatelessWidget {
             // User Profile Name and Email
             ListTile(
               trailing: IconButton(
-                onPressed: () {},
+                onPressed: () => Get.to(() => const Editprofile()),
                 icon: const Icon(Iconsax.edit),
               ),
               title: Text(
@@ -65,21 +70,27 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
 
-            AppSectionHeading(title1: "Profile Information", title2: ""),
+            const AppSectionHeading(title1: "Profile Information", title2: ""),
 
-            ListTile(
-              leading: Icon(Iconsax.location),
-              trailing: IconButton(
-                onPressed: () {},
-                icon: const Icon(Iconsax.edit),
-              ),
-              title: Text(
-                "Address",
-                style: Theme.of(context).textTheme.headlineSmall,
-              ),
-              subtitle: Text(
-                "Set your address",
-                style: Theme.of(context).textTheme.bodyMedium,
+            Obx(
+              () => ListTile(
+                leading: const Icon(Iconsax.location),
+                trailing: IconButton(
+                  onPressed: () => Get.to(() => const UserAddressesScreen()),
+                  icon: const Icon(Iconsax.edit),
+                ),
+                title: Text(
+                  "Address",
+                  style: Theme.of(context).textTheme.headlineSmall,
+                ),
+                subtitle: Text(
+                  addressController.addresses.isEmpty
+                      ? "Set your address"
+                      : addressController.addresses.last.toString(),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
               ),
             ),
 
@@ -112,7 +123,7 @@ class ProfileScreen extends StatelessWidget {
             const SizedBox(height: AppSizes.spaceBtwItems),
 
             AppOutlinedButton(
-              child: Text("Logout"),
+              child: Text("Logout", style: TextStyle(color: AppColors.warning)),
               onPressed: controller.logout,
             ),
           ],

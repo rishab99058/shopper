@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shopper/common/widgets/loaders/shimmer.dart';
@@ -16,6 +17,7 @@ class AppCircularImage extends StatelessWidget {
     this.fit = BoxFit.cover,
     this.padding = AppSizes.sm,
     this.isNetworkImage = false,
+    this.isFileImage = false,
     this.showBorder = false,
     this.borderColor = AppColors.primary,
     this.imageUrl = "",
@@ -24,6 +26,7 @@ class AppCircularImage extends StatelessWidget {
 
   final BoxFit? fit;
   final bool isNetworkImage;
+  final bool isFileImage;
   final Color? overlayColor;
   final Color? backgroundColor;
   final double width, height, padding;
@@ -58,7 +61,9 @@ class AppCircularImage extends StatelessWidget {
                     AppShimmerEffect(width: width, height: height),
                 errorWidget: (context, url, error) => const Icon(Icons.error),
               )
-            : Image(fit: fit, image: AssetImage(imageUrl)),
+            : isFileImage
+                ? Image.file(File(imageUrl), fit: fit)
+                : Image(fit: fit, image: AssetImage(imageUrl)),
       ),
     );
   }
