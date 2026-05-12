@@ -49,6 +49,9 @@ dependencies:
   cached_network_image: ^3.4.1
   shimmer: ^3.0.0
   image_picker: ^1.2.1
+  firebase_analytics: ^12.4.0
+  firebase_crashlytics: ^5.2.1
+  firebase_database: ^12.4.0
 
 dev_dependencies:
   flutter_test:
